@@ -1,0 +1,22 @@
+server:
+  port: "${PERSISTENCE_SERVER_PORT:7890}"
+spring:
+  application:
+    name: persistence-server
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        namespace: f0f2ef4d-ef19-481d-ab05-501dc330e78f
+        group: persistence-server
+        ephemeral: false
+dubbo:
+  scan:
+    base-packages: com.github.lastsunday.cloud
+  protocol:
+    name: dubbo
+    port: "${PERSISTENCE_DUBBO_PORT:26767}"
+  registry:
+    address: nacos://127.0.0.1:8848
